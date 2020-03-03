@@ -58,7 +58,7 @@ class Webhook
   end
 
   def comment_message
-    "\n Comment Url: #{payload['comment']['links']['html']}"
+    "\n Comment Url: #{payload['comment']['links']['html']['href']}"
   end
 
   def is_comment?
