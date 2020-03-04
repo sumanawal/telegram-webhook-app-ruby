@@ -54,7 +54,7 @@ class Webhook
   end
 
   def default_message
-    "=============================\n @#{telegram_actor} has perform #{action} \n Author: @#{telegram_author} \n Url: #{pullrequest_url}"
+    "=============================\n @#{telegram_actor} #{action} a pull request \n Author: @#{telegram_author} \n Url: #{pullrequest_url}"
   end
 
   def comment_message
