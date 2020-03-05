@@ -4,7 +4,6 @@ require 'sinatra'
 require 'pry'
 require 'json'
 require './lib/webhook'
-require './lib/target_branch'
 configure do
   set :server, :puma
 end
@@ -19,9 +18,6 @@ end
 
 post '/webhook' do
   begin
-    target_branch = TargetBranch.new(payload['pullrequest'])
-    return if target_branch.send_message_for_master_only && !target_branch.master?
-
     Webhook.new(action, payload).call
     { staus: 200 }.to_json
   end
@@ -34,9 +30,4 @@ end
 def payload
   JSON.parse request.body.read
 end
-
-def message_only_for_master
-  true
-end
-
 

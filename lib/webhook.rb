@@ -9,10 +9,24 @@ class Webhook
   end
 
   def call
+    return if send_message_for_master_only && !master?
+
     send_message
   end
 
   private
+
+  def target_branch
+    payload['pullrequest']['destination']['branch']['name']
+  end
+
+  def master?
+    target_branch.eql?('master')
+  end
+
+  def send_message_for_master_only
+    true
+  end
 
   def actor
     payload['actor']
