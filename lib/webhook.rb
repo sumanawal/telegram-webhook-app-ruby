@@ -51,11 +51,11 @@ class Webhook
   end
 
   def telegram_actor
-    telegram_mapper["#{actor['nickname']}"]
+    telegram_mapper["#{actor['nickname']}"] || actor['nickname']
   end
 
   def telegram_author
-    telegram_mapper["#{author['nickname']}"]
+    telegram_mapper["#{author['nickname']}"] || author['nickname']
   end
 
   def pullrequest_url
@@ -79,9 +79,18 @@ class Webhook
     ['comment_created', 'comment_updated', 'comment_deleted'].include? action.split(':')[1]
   end
 
+  def sticker
+    base_url = 'https://github.com/sumanawal/telegram-stickers.github.io/tree/master/public/stickers/adventure-time'
+    "#{base_url}/1.png"
+  end
   def send_message
     url = "https://api.telegram.org/bot980940855:AAG54PZ27YkIe9OxLxWsjw5J-YL5aCjBfbU/sendMessage"
-    params = { chat_id: "-457596339", parse_mode: 'HTML', text: "#{prepare_message}\n============================="}
+    params = {
+      chat_id: "-457596339",
+      parse_mode: 'HTML',
+      text: "#{prepare_message}\n=============================",
+      sticker: sticker
+    }
     HTTParty.post(url, query: params)
   end
 end
