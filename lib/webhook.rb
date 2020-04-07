@@ -68,11 +68,11 @@ class Webhook
   end
 
   def default_message
-    "=============================\n @#{telegram_actor} has perform #{action} \n Author: @#{telegram_author} \n Url: #{pullrequest_url}"
+    "@#{telegram_actor}: #{action} \n Author: @#{telegram_author} \n Url: <a href='#{pullrequest_url}'>PR</a>"
   end
 
   def comment_message
-    "\n Comment Url: #{payload['comment']['links']['html']['href']}"
+    "\n Comment Url: <a href=\"#{payload['comment']['links']['html']['href']}\">Comment</a>"
   end
 
   def is_comment?
@@ -80,17 +80,19 @@ class Webhook
   end
 
   def sticker
-    base_url = 'https://github.com/sumanawal/telegram-stickers.github.io/tree/master/public/stickers/adventure-time'
-    "#{base_url}/1.png"
+    base_url = 'https://github.com/sumanawal/telegram-stickers.github.io/raw/master/public/stickers/adventure-time'
+    "#{base_url}/#{rand(1..23)}.png"
   end
+
   def send_message
-    url = "https://api.telegram.org/bot980940855:AAG54PZ27YkIe9OxLxWsjw5J-YL5aCjBfbU/sendMessage"
-    params = {
+    photo_url = "https://api.telegram.org/bot980940855:AAG54PZ27YkIe9OxLxWsjw5J-YL5aCjBfbU/sendPhoto"
+    params1 = {
       chat_id: "-457596339",
+      photo: sticker,
+      disable_notification: true,
       parse_mode: 'HTML',
-      text: "#{prepare_message}\n=============================",
-      sticker: sticker
+      caption: prepare_message
     }
-    HTTParty.post(url, query: params)
+    HTTParty.post(photo_url, query: params1)
   end
 end
