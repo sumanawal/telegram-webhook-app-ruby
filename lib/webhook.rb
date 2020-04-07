@@ -91,7 +91,7 @@ class Webhook
   def send_message
     url = "https://api.telegram.org/bot980940855:AAG54PZ27YkIe9OxLxWsjw5J-YL5aCjBfbU/sendMessage"
     msg = "#{prepare_message}"
-    msg += "<a href='#{actor_profile_image}'></a>"
+    msg += "<a href='#{actor_profile_image}'>&#8205;</a>"
     params = {
       chat_id: "-457596339",
       parse_mode: 'HTML',
