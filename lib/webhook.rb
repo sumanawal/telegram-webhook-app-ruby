@@ -84,15 +84,20 @@ class Webhook
     "#{base_url}/#{rand(1..23)}.png"
   end
 
+  def actor_profile_image
+    actor["links"]["avatar"]["href"]
+  end
+
   def send_message
-    photo_url = "https://api.telegram.org/bot980940855:AAG54PZ27YkIe9OxLxWsjw5J-YL5aCjBfbU/sendPhoto"
-    params1 = {
+    url = "https://api.telegram.org/bot980940855:AAG54PZ27YkIe9OxLxWsjw5J-YL5aCjBfbU/sendMessage"
+    msg = "#{prepare_message}"
+    msg += "<a href='#{actor_profile_image}'></a>"
+    params = {
       chat_id: "-457596339",
-      photo: sticker,
-      disable_notification: true,
       parse_mode: 'HTML',
-      caption: prepare_message
+      text: msg,
+      disable_web_page_preview: false
     }
-    HTTParty.post(photo_url, query: params1)
+    HTTParty.post(url, query: params)
   end
 end
