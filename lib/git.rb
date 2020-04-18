@@ -6,7 +6,7 @@ module Git
   end
 
   def source_branch
-    'test source branch'
+    payload['pullrequest']['source']['branch']['name']
   end
 
   def master_branch?
@@ -14,11 +14,11 @@ module Git
   end
 
   def pullrequest_title
-    'Currently test pr title'
+    payload['pullrequest']['title']
   end
 
   def comment_message
-    'test comment message'
+    payload['comment']['content']['raw'][0..50]
   end
 
   def pullrequest_url
