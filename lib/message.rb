@@ -19,7 +19,7 @@ module Message
   def comment_body
     body = "#{actual_action.gsub('_', ' ').capitalize} by:\n"
     body += "\t\t #{Emoji.body_emoji(actor)} <i><b>#{actor}</b></i>\n"
-    body += "\n\t\t#{Emoji.comment}<a href='#{comment_url}'>comment</a>"
+    body += "\t\t #{Emoji.comment}  <a href='#{comment_url}'>comment</a>" unless actual_action.eql?('comment_deleted')
     body
   end
 
