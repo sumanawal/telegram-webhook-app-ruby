@@ -34,11 +34,11 @@ module Git
   end
 
   def author
-    payload['pullrequest']['author']
+    payload['pullrequest']['author']['nickname']
   end
 
   def actor
-    payload['actor']
+    payload['actor']['nickname']
   end
 
   def actual_action
