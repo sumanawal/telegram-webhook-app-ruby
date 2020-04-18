@@ -102,6 +102,10 @@ class Emoji
       '💘'
     end
 
+    def right_arrow
+      '➡'
+    end
+
     def body_emoji(user)
       user.eql?('Shrijana Poudel') ? women_dancer : men_dancer
     end

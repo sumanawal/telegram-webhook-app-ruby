@@ -13,7 +13,7 @@ module Message
   end
 
   def footer
-    "\n#{source_branch} #{Emoji.arrow} #{target_branch}"
+    "\n\n#{source_branch} \t\t#{Emoji.right_arrow} \t\t#{target_branch}"
   end
 
   def comment_body
