@@ -17,13 +17,13 @@ module Message
   end
 
   def comment_body
-    body = "#{actual_action.gusb('_', ' ').capitalize} by:\n"
+    body = "#{actual_action.gsub('_', ' ').capitalize} by:\n"
     body += "\t\t #{Emoji.body_emoji(actor)} #{actor}"
     body
   end
 
   def pullrequest_body
-    body = "#{actual_action.gusb('_', ' ').capitalize} by:\n"
+    body = "#{actual_action.gsub('_', ' ').capitalize} by:\n"
     user = action.eql?('pullrequest:created') ? author : actor
     body += "\t\t #{Emoji.body_emoji(user)} #{user}"
     body
