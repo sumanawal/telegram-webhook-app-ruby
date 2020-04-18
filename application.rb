@@ -18,7 +18,7 @@ end
 
 post '/webhook' do
   begin
-    Webhook.new(action, payload).call
+    Webhook.new(action, payload).execute
     { staus: 200 }.to_json
   end
 end
