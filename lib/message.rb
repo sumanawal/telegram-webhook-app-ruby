@@ -18,14 +18,15 @@ module Message
 
   def comment_body
     body = "#{actual_action.gsub('_', ' ').capitalize} by:\n"
-    body += "\t\t #{Emoji.body_emoji(actor)} #{actor}"
+    body += "\t\t #{Emoji.body_emoji(actor)} <i><b>#{actor}</b></i>\n"
+    body += "\n\t\t#{Emoji.comment}<a href='#{comment_url}'>comment</a>"
     body
   end
 
   def pullrequest_body
     body = "#{actual_action.gsub('_', ' ').capitalize} by:\n"
     user = action.eql?('pullrequest:created') ? author : actor
-    body += "\t\t #{Emoji.body_emoji(user)} #{user}"
+    body += "\t\t #{Emoji.body_emoji(user)} <i><b>#{user}</b></i>"
     body
   end
 
