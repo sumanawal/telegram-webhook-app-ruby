@@ -6,4 +6,4 @@ bind "unix://#{root}/tmp/puma.sock"
 pidfile "#{root}/tmp/pids/puma.pid"
 rackup "#{root}/config.ru"
 state_path "#{root}/tmp/pids/puma.state"
-daemonize true
+# daemonize true
