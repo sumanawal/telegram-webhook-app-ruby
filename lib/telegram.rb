@@ -2,7 +2,7 @@
 
 module Telegram
   def chat_id
-    '-476373562'
+    '-457596339'
   end
 
   def bot_id
